@@ -25,15 +25,15 @@ export default function App() {
     const response = await api.post(`/repositories/${id}/like`);
     const repositoryUpdate = response.data;
 
-    const repositoriesUpdated = repositories.map((repository) => {
-      if (repository.id === id) {
-        return repositoryUpdate;
-      } else {
-        return repository;
-      }
-    });
-
-    setRepositories(repositoriesUpdated);
+    setRepositories(
+      repositories.map((repository) => {
+        if (repository.id === id) {
+          return repositoryUpdate;
+        } else {
+          return repository;
+        }
+      })
+    );
   }
 
   return (
@@ -49,7 +49,7 @@ export default function App() {
 
               <View style={styles.techsContainer}>
                 {repository.techs.split(',').map((tech) => (
-                  <Text style={styles.tech} key={`${repository.id}-${tech}`}>
+                  <Text style={styles.tech} key={tech}>
                     {tech}
                   </Text>
                 ))}
