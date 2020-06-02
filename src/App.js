@@ -48,7 +48,7 @@ export default function App() {
               <Text style={styles.repository}>{repository.title}</Text>
 
               <View style={styles.techsContainer}>
-                {repository.techs.split(',').map((tech) => (
+                {repository.techs.map((tech) => (
                   <Text style={styles.tech} key={tech}>
                     {tech}
                   </Text>
