@@ -25,15 +25,15 @@ export default function App() {
     const response = await api.post(`/repositories/${id}/like`);
     const repositoryUpdate = response.data;
 
-    setRepositories(
-      repositories.map((repository) => {
-        if (repository.id === id) {
-          return repositoryUpdate;
-        } else {
-          return repository;
-        }
-      })
-    );
+    const repositoriesUpdated = repositories.map((repository) => {
+      if (repository.id === id) {
+        return repositoryUpdate;
+      } else {
+        return repository;
+      }
+    });
+
+    setRepositories(repositoriesUpdated);
   }
 
   return (
@@ -60,7 +60,7 @@ export default function App() {
                   style={styles.likeText}
                   testID={`repository-likes-${repository.id}`}
                 >
-                  {repository.likes} curtida
+                  {repository.likes} curtida{repository.likes > 1 ? 's' : ''}
                 </Text>
               </View>
 
